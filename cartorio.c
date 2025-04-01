@@ -181,43 +181,57 @@ int deletar() {
 int main() {
     int opcao = 0; // Variável para armazenar a opção escolhida pelo usuário
     int laco = 1;
-
-    for (laco = 1; laco == 1;) { // Loop infinito para exibir o menu
-        system("cls"); // Limpa a tela do console (no Windows)
-        
-        setlocale(LC_ALL, "Portuguese"); // Define o idioma e a região como português
-        printf("--- Cartório da EBAC ---\n\n"); // Exibe o título do programa
-        printf("Escolha a opção desejada do menu\n\n");
-        printf("\t1 - Registrar nomes\n");
-        printf("\t2 - Consultar nomes\n");
-        printf("\t3 - Deletar nomes\n");
-        printf("\t4 - Sair\n\n\n");
-        printf("Opção: "); // Solicita ao usuário uma opção
-        
-        scanf("%d", &opcao); // Lê a escolha do usuário
-        
-        system("cls"); // Limpa a tela após a escolha
-        
-        // Executa a ação correspondente à opção escolhida
-        switch(opcao) {
-            case 1:
-                registro(); // Chama a função de registro
-                break;
-            case 2:
-                consulta(); // Chama a função de consulta
-                break;
-            case 3:
-                deletar(); // Chama a função de deletação
-                break;
-            case 4:
-                sair(); // Chama a função de saída
-                break;
-            default:
-                printf("Essa opção não está disponível!\n"); // Caso a opção seja inválida
-                system("pause"); // Pausa para o usuário ler a mensagem
-                break;
-        }
+    char senhaDigitada[10]="a";
+    
+    printf("--- Cartório da EBAC ---\n\n");
+	printf("Login de Administrador!\n\nDigite a sua senha: \n");
+    scanf("%s", senhaDigitada);
+    
+    if (strcmp(senhaDigitada, "admin") == 0) {
+	
+	    for (laco = 1; laco == 1;) { // Loop infinito para exibir o menu
+	        system("cls"); // Limpa a tela do console (no Windows)
+	        
+	        setlocale(LC_ALL, "Portuguese"); // Define o idioma e a região como português
+	        printf("--- Cartório da EBAC ---\n\n"); // Exibe o título do programa
+	        printf("Escolha a opção desejada do menu\n\n");
+	        printf("\t1 - Registrar nomes\n");
+	        printf("\t2 - Consultar nomes\n");
+	        printf("\t3 - Deletar nomes\n");
+	        printf("\t4 - Sair\n\n\n");
+	        printf("Opção: "); // Solicita ao usuário uma opção
+	        
+	        scanf("%d", &opcao); // Lê a escolha do usuário
+	        
+	        system("cls"); // Limpa a tela após a escolha
+	        
+	        // Executa a ação correspondente à opção escolhida
+	        switch(opcao) {
+	            case 1:
+	                registro(); // Chama a função de registro
+	                break;
+	            case 2:
+	                consulta(); // Chama a função de consulta
+	                break;
+	            case 3:
+	                deletar(); // Chama a função de deletação
+	                break;
+	            case 4:
+	                sair(); // Chama a função de saída
+	                break;
+	            default:
+	                printf("Essa opção não está disponível!\n"); // Caso a opção seja inválida
+	                system("pause"); // Pausa para o usuário ler a mensagem
+	                break;
+	    	}
+        }	
     }
+    else{
+    	printf("\nSenha incorreta\n\n");
+    	system("pause");
+    	system("cls");
+    	main();
+	}
 }
 
 
