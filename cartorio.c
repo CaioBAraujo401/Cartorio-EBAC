@@ -10,64 +10,71 @@ int registro() {
     char nome[40]; // Variável para armazenar o nome do usuário
     char sobrenome[40]; // Variável para armazenar o sobrenome do usuário
     char cargo[40]; // Variável para armazenar o cargo do usuário
-    
-    // Coleta o CPF do usuário
-    printf("Digite o CPF a ser cadastrado: ");
-    scanf("%s", cpf);  // Lê o CPF informado
+    char opcao; // Variável para armazenar a opção de continuar ou voltar
 
-    // Cria um nome de arquivo com o CPF e a extensão ".txt"
-    sprintf(arquivo, "%s.txt", cpf); 
-    
-    // Abre o arquivo para escrita, criando-o caso não exista
-    FILE *file = fopen(arquivo, "w");
-    if (file == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
-        return 1; // Se não conseguir abrir o arquivo, retorna erro
-    }
+    do {
+        // Coleta o CPF do usuário
+        printf("Digite o CPF a ser cadastrado: ");
+        scanf("%s", cpf);  // Lê o CPF informado
 
-    // Escreve o CPF no arquivo
-    fprintf(file, "%s, ", cpf);
-    fclose(file); // Fecha o arquivo
-    
-    // Coleta o nome do usuário
-    printf("Digite o nome a ser cadastrado: ");
-    scanf(" %[^\n]", nome); // Lê o nome (incluindo espaços)
+        // Cria um nome de arquivo com o CPF e a extensão ".txt"
+        sprintf(arquivo, "%s.txt", cpf); 
+        
+        // Abre o arquivo para escrita, criando-o caso não exista
+        FILE *file = fopen(arquivo, "w");
+        if (file == NULL) {
+            printf("Erro ao abrir o arquivo para escrita.\n");
+            return 1; // Se não conseguir abrir o arquivo, retorna erro
+        }
 
-    // Abre o arquivo para adicionar mais informações
-    file = fopen(arquivo, "a");
-    if (file == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
-        return 1;
-    }
-    fprintf(file, "%s ", nome); // Adiciona o nome no arquivo
-    fclose(file); // Fecha o arquivo
+        // Escreve o CPF no arquivo
+        fprintf(file, "%s, ", cpf);
+        fclose(file); // Fecha o arquivo
 
-    // Coleta o sobrenome do usuário
-    printf("Digite o sobrenome a ser cadastrado: ");
-    scanf(" %[^\n]", sobrenome); // Lê o sobrenome (incluindo espaços)
+        // Coleta o nome do usuário
+        printf("Digite o nome a ser cadastrado: ");
+        scanf(" %[^\n]", nome); // Lê o nome (incluindo espaços)
 
-    // Abre o arquivo para adicionar mais informações
-    file = fopen(arquivo, "a");
-    if (file == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
-        return 1;
-    }
-    fprintf(file, "%s, ", sobrenome); // Adiciona o sobrenome no arquivo
-    fclose(file); // Fecha o arquivo
-    
-    // Coleta o cargo do usuário
-    printf("Digite o cargo a ser cadastrado: ");
-    scanf(" %[^\n]", cargo); // Lê o cargo (incluindo espaços)
+        // Abre o arquivo para adicionar mais informações
+        file = fopen(arquivo, "a");
+        if (file == NULL) {
+            printf("Erro ao abrir o arquivo para escrita.\n");
+            return 1;
+        }
+        fprintf(file, "%s ", nome); // Adiciona o nome no arquivo
+        fclose(file); // Fecha o arquivo
 
-    // Abre o arquivo para adicionar mais informações
-    file = fopen(arquivo, "a");
-    if (file == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
-        return 1;
-    }
-    fprintf(file, "%s", cargo); // Adiciona o cargo no arquivo
-    fclose(file); // Fecha o arquivo
-    
+        // Coleta o sobrenome do usuário
+        printf("Digite o sobrenome a ser cadastrado: ");
+        scanf(" %[^\n]", sobrenome); // Lê o sobrenome (incluindo espaços)
+
+        // Abre o arquivo para adicionar mais informações
+        file = fopen(arquivo, "a");
+        if (file == NULL) {
+            printf("Erro ao abrir o arquivo para escrita.\n");
+            return 1;
+        }
+        fprintf(file, "%s, ", sobrenome); // Adiciona o sobrenome no arquivo
+        fclose(file); // Fecha o arquivo
+
+        // Coleta o cargo do usuário
+        printf("Digite o cargo a ser cadastrado: ");
+        scanf(" %[^\n]", cargo); // Lê o cargo (incluindo espaços)
+
+        // Abre o arquivo para adicionar mais informações
+        file = fopen(arquivo, "a");
+        if (file == NULL) {
+            printf("Erro ao abrir o arquivo para escrita.\n");
+            return 1;
+        }
+        fprintf(file, "%s", cargo); // Adiciona o cargo no arquivo
+        fclose(file); // Fecha o arquivo
+
+        // Pergunta se o usuário deseja registrar outro usuário
+        printf("Deseja cadastrar outro usuário? (S para sim / N para não): ");
+        scanf(" %c", &opcao); // Lê a opção do usuário
+    } while (opcao == 'S' || opcao == 's'); // Se o usuário responder 'S', o loop continua
+
     system("pause"); // Pausa para o usuário ver a mensagem antes de continuar
     return 0; // Retorna sucesso
 }
